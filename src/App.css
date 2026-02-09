@@ -1,0 +1,15 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+.app-layout{
+  margin-top: 80px;
+}
+.main-content {
+  margin-left: 220px;        
+  padding: 40px;
+   /* display: flex;
+  justify-content: center;   */
+}

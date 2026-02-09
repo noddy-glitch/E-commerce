@@ -1,0 +1,131 @@
+.cartitems {
+  width: 90%;
+  margin: auto;
+  padding: 30px 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* HEADER ROW */
+.cartitems-format-main {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 0.5fr;
+  font-weight: 600;
+  color: #444;
+  align-items: center;
+}
+
+/* EACH PRODUCT ROW */
+.cartitems-format {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 0.5fr;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.cartitems hr {
+  border: none;
+  height: 1px;
+  background: #e2e2e2;
+  margin: 10px 0;
+}
+
+/* PRODUCT IMAGE */
+.carticon-product-icon {
+  width: 70px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* QUANTITY BUTTON */
+.cartitem-quantity {
+  width: 50px;
+  height: 35px;
+  border: 1px solid #ccc;
+  background: #f7f7f7;
+  font-weight: bold;
+  cursor: default;
+}
+
+/* REMOVE ICON */
+.cartitems-remove-icon {
+  width: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.cartitems-remove-icon:hover {
+  transform: scale(1.2);
+}
+
+/* TOTAL SECTION */
+.cartitem-total {
+  margin-top: 40px;
+  max-width: 400px;
+}
+
+.cartitem-total h1 {
+  margin-bottom: 15px;
+}
+
+.cart-item-total-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.cartitem-checkout-button {
+  width: 100%;
+  height: 45px;
+  margin-top: 15px;
+  border: none;
+  background: black;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cartitem-checkout-button:hover {
+  background: #333;
+}
+
+/* SHIPPING */
+.cartitem-shipping label {
+  display: block;
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+/* PROMO CODE */
+.cartitem-promocode {
+  margin-top: 40px;
+}
+
+.cartitem-promobox {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cartitem-promobox input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.cartitem-apply-button {
+  padding: 10px 20px;
+  background: #ff4141;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.empty-img{
+  text-align: center;
+}
+.empty-img img{
+
+  width: 440px;
+}

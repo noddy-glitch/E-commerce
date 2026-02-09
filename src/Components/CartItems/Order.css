@@ -1,0 +1,54 @@
+.order-success {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.order-success h2 {
+  color: #27ae60; /* A nice success green */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 15px;
+}
+
+.order-details, .shipping-address {
+  text-align: left;
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.order-details h3, .shipping-address h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.2rem;
+  border-left: 4px solid #27ae60;
+  padding-left: 10px;
+  margin-bottom: 15px;
+}
+
+.order-details p, .shipping-address p {
+  margin: 8px 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+.order-details p strong, .shipping-address p strong {
+  color: #000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .order-success {
+    margin: 20px;
+    padding: 20px;
+  }
+}

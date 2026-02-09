@@ -1,0 +1,79 @@
+.Offers {
+  width: 90%;
+  margin: 80px auto;                 /* prevents overlap */
+  padding: 60px 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(180deg, #fde1ff, #e1ffea);
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+/* LEFT SIDE */
+.Offers-left {
+  flex: 1;
+}
+
+.Offers-left h1 {
+  font-size: 60px;
+  color: #171717;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.Offers-left p {
+  margin-top: 20px;
+  color: #444;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.Offers-left button {
+  margin-top: 25px;
+  padding: 14px 28px;
+  border: none;
+  background: #ff4141;
+  color: white;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.Offers-left button:hover {
+  background: #ff1f1f;
+  transform: translateY(-2px);
+}
+
+/* RIGHT SIDE IMAGE */
+.Offers-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.Offers-right img {
+  width: 70%;
+  max-width: 400px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .Offers {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .Offers-left h1 {
+    font-size: 40px;
+  }
+
+  .Offers-right img {
+    width: 60%;
+    margin-top: 20px;
+  }
+}
