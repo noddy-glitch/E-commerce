@@ -7,7 +7,11 @@ import { useState } from "react";
 const Payment = () => {
  const location = useLocation();
  const navigate = useNavigate();
- const { address, totalAmount, orderId } = location.state || {};
+ const { address, totalAmount, orderId, products } =
+  location.state || {};
+
+//  const { address, totalAmount, orderId } = location.state || {};
+
 
  const [paymentMethod, setPaymentMethod] = useState("");
  const [deliveryOption, setDeliveryOption] = useState("free");
@@ -104,7 +108,47 @@ const Payment = () => {
  };
 
  updateTotalIncome(discountedAmount);
- saveOrderHistory(order);
+
+// ⭐ Get products from cart
+// const cartProducts =
+//   JSON.parse(localStorage.getItem("cartItems")) || [];
+
+// // ⭐ Build FULL order object
+// const fullOrder = {
+//   id: orderId,
+//   address,
+//   totalAmount: discountedAmount,
+//   orderDate: new Date().toISOString(),
+//   status: "Order Placed",
+//   products: cartProducts
+// };
+const fullOrder = {
+  id: orderId,
+  address,
+  totalAmount: discountedAmount,
+  orderDate: new Date().toISOString(),
+
+  status: "Order Placed",
+
+  tracking: [
+    "Order Placed",
+    "Packed",
+    "Out for Delivery",
+    "Delivered"
+  ],
+
+  products: products   // ⭐ Correct source
+};
+
+
+// ⭐ Save to SAME key MyOrders reads
+const existingOrders =
+  JSON.parse(localStorage.getItem("customer-orders")) || [];
+
+localStorage.setItem(
+  "customer-orders",
+  JSON.stringify([...existingOrders, fullOrder])
+);
 
  alert(`✅ Order Placed! Total Paid: ₹${discountedAmount.toFixed(2)}`);
 

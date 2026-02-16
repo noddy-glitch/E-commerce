@@ -1,12 +1,29 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext,useEffect,useState } from "react";
 import all_product from "../components/Assets/all_product";
-import { useState } from "react";
 
 
 
 export const ShopContext = createContext(null);
 
+const [user, setUser]  =  useState(null);
+const [role,setRole]= useState("user")
 
+const login=(email,password,selectedRole) =>{
+  setUser({email});
+  setRole(selectedRole);
+};
+
+useEffect (()=>{
+  const savedUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if(savedUser){
+    setRole(savedUser.role);
+  }
+},[]);
+const logout = () =>{
+  setUser(null);
+  setRole("user");
+};
 const getDefaultCart = () => {
   let cart = {};
   for (let index = 0; index < all_product.length + 1; index++) {

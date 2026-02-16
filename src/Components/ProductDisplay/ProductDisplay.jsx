@@ -3,30 +3,34 @@ import './ProductDisplay.css'
 import star_dull_icon from "../Assets/star_dull_icon.png"
 import star_icon from "../Assets/star_icon.png"
 import { ShopContext } from '../../Context/ShopContext'
+import { useNavigate } from 'react-router-dom'
 const ProductDisplay = (props) => {
   const { product } = props;
-  const{addToCart} =useContext(ShopContext);
+  const { addToCart } = useContext(ShopContext);
 
-  const [zoomStyle,setZoomStyle] = useState({transform:'scale(1)',
-    transformOrigin:'center'
-  }) 
+  const [zoomStyle, setZoomStyle] = useState({
+    transform: 'scale(1)',
+    transformOrigin: 'center'
+  })
 
-  const handleMouseMove = (e) =>{
-    const {left,top,width,height} = e.target.getBoundingClientRect()
-    const x = ((e.clientX -left)/width) * 100
-    const y = ((e.clientY -top)/height) * 100
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = e.target.getBoundingClientRect()
+    const x = ((e.clientX - left) / width) * 100
+    const y = ((e.clientY - top) / height) * 100
 
     setZoomStyle({
-      transform:'scale(2)',
-      transformOrigin:`${x}% ${y}%`
+      transform: 'scale(2)',
+      transformOrigin: `${x}% ${y}%`
     })
   }
-  const handleMouseLeave = ()=>{
+  const handleMouseLeave = () => {
     setZoomStyle({
-      transform:'scale(1)',
-      transformOrigin:'center'
+      transform: 'scale(1)',
+      transformOrigin: 'center'
     })
   }
+  const navigate = useNavigate();
+  const isLoggedIn= localStorage.getItem("isLoggedIn")=== "true";
   return (
     <div className='productdisplay'>
       <div className="productdisplay-left">
@@ -37,12 +41,12 @@ const ProductDisplay = (props) => {
           <img src={product.image} alt={product.name} />
         </div>
         <div className="productdisplay-image">
-          <img className="productdisplay-main-image" 
-          src={product.image} 
-          alt={product.name} 
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          style={zoomStyle}
+          <img className="productdisplay-main-image"
+            src={product.image}
+            alt={product.name}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={zoomStyle}
           />
         </div>
       </div>
@@ -76,7 +80,14 @@ const ProductDisplay = (props) => {
               <div className="size-option">XXL</div>
             </div>
           </div>
-          <button onClick={()=>{addToCart(product.id)}} className='add-to-cart'>Add to Cart</button>
+
+          <button className="add-to-cart" onClick={() => {
+            if (isLoggedIn) {
+              addToCart(product.id);
+            } else {
+              navigate("/login");
+            }
+          }}>Add to Cart</button>
           <p className='productdisplay-right-category'><span>Category:</span>Women, T-shirt,Crop-top</p>
           <p className='productdisplay-right-category'><span>Tags:</span>Modern, Latest,Trending</p>
 

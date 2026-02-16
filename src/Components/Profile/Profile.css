@@ -1,0 +1,102 @@
+:root {
+  --primary-text: #333;
+  --secondary-text: #626262;
+  --border-color: #ddd;
+  --bg-hover: #f9f9f9;
+  --transition: all 0.3s ease;
+}
+
+.profile-container {
+  max-width: 500px;
+  /* Use clamp for fluid margins: min 80px, preferred 10vh, max 120px */
+  margin: clamp(80px, 10vh, 120px) auto 40px;
+  padding: 40px 30px;
+
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Profile Icon & Info */
+.profile-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px; /* Better than individual margins */
+  margin-bottom: 30px;
+}
+
+.profile-logo svg {
+  width: 80px;
+  height: 80px;
+  color: var(--secondary-text);
+}
+
+.profile-logo p {
+  margin: 0;
+  color: var(--primary-text);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Order / Cart Links */
+.order-cart {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Prevents overflow on tiny screens */
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.order-cart a {
+  text-decoration: none;
+  padding: 10px 28px;
+  border-radius: 50px;
+  border: 1px solid var(--border-color);
+  background: white;
+  color: var(--primary-text);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.order-cart a:hover {
+  background: var(--bg-hover);
+  border-color: var(--secondary-text);
+  transform: translateY(-1px);
+}
+
+/* Logout Button */
+.logout-btn button {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--secondary-text);
+  background: white;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.logout-btn button:hover {
+  background: #222;
+  color: white;
+  border-color: #222;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+  .profile-container {
+    margin: 100px 20px 20px; /* Consistent side spacing */
+    padding: 30px 20px;
+  }
+  
+  .order-cart a {
+    width: 100%; /* Stack buttons on very small screens */
+    box-sizing: border-box;
+  }
+}

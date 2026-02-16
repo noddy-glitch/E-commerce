@@ -3,8 +3,10 @@ import React from 'react'
 import { ShopContext } from '../../Context/ShopContext'
 import { useNavigate } from 'react-router-dom';
 import './CheckOut.css'
+
+
 const CheckOut = () => {
-  const { getTotalCartAmount } = useContext(ShopContext);
+  const { getTotalCartAmount, all_product, cartItems } = useContext(ShopContext);
   const totalAmount = getTotalCartAmount();
   const navigate = useNavigate();
 
@@ -35,23 +37,28 @@ const CheckOut = () => {
     setFormVisible(false);
   }
 
+
+  const orderedProducts = all_product
+  .filter((p) => cartItems[p.id] > 0)
+  .map((p) => ({
+    id: p.id,
+    name: p.name,
+    image: p.image,
+    price: p.new_price,
+    quantity: cartItems[p.id],
+  }));
+
+
   const handlePlaceOrder = () => {
     if (!address) {
       alert("Enter Address First")
       return;
     }
     const orderId = Date.now()
-    const orderDetails = {
-      id: orderId,
-      address,
-      totalAmount,
-      deliveryType: "Today Delivery",
-      orderDate: new Date().toISOString(),
-      status: "order placed"
-    };
-    const existingOrder = JSON.parse(localStorage.getItem("customer-order"))|| [];
-    localStorage.setItem("customer-order", JSON.stringify([...existingOrder,orderDetails]));
-    navigate("/payment", {state: {address,totalAmount,orderId}});
+
+    
+    navigate("/payment", 
+      {state: {address,totalAmount,orderId, products:orderedProducts}});
 
   }
   return (
@@ -113,6 +120,9 @@ const CheckOut = () => {
         <div className="checkout-right-section">
           {address ? (
             <div className="save-address-btn">
+            <div className="product-detail">
+              
+            </div>
               <h3> Delivery Address</h3>
               <p><b>Name:</b>{address.name}</p>
               <p><b>Phone:</b>{address.phone}</p>
