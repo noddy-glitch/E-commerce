@@ -2,10 +2,14 @@ import React from 'react'
 import {Link,useNavigate} from 'react-router-dom'
 import { FaRegCircleUser } from 'react-icons/fa6'
 import './Profile.css'
+import { useShopContext } from '../../Context/ShopContext'
 const Profile = () => {
+      const { login  ,setisuser } = useShopContext();
+
   const navigate = useNavigate();
   const handleLogout =() =>{
-    localStorage.removeItem("isLoggedIn");
+    localStorage.setItem("isLoggedIn" , "false");
+    setisuser("false")
     localStorage.removeItem("currentUser");
     
     navigate("/login")

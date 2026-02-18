@@ -9,8 +9,9 @@ import { TfiLocationPin } from 'react-icons/tfi';
 
 
 const Navbar = () => {
-  const { getTotalCartItems } = useContext(ShopContext);
+  const { getTotalCartItems , isuser } = useContext(ShopContext);
   const [isLogin,setIsLogin] = useState(false);
+console.log(isuser);
 
   useEffect (()=>{
     const LoginStatus = localStorage.getItem("isLoggedIn");
@@ -30,18 +31,16 @@ const Navbar = () => {
       </div>
       <div className="nav-login-cart">
 
-        {isLogin ? (
-          <Link to="/profile">
-            <div className="profile-img">
-              <RiUserHeartLine />
-            </div>
-
-          </Link>
-        ) : (
-          <Link to="/login">
+{isuser === "false" ?  <Link to="/login">
             <button className='login-btn'>Login</button>
           </Link>
-        )}
+           : <Link to="/profile">
+            <div className="profile-img">
+              <RiUserHeartLine />
+            </div> </Link> }
+
+
+      
         <Link to="/cart"><span ><FaShoppingCart className='cart-icon' /> </span></Link>
         <div className="nav-part-count">{getTotalCartItems()}</div>
         <div className="delivery-box">

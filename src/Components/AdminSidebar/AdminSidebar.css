@@ -1,0 +1,74 @@
+/* Sidebar Container */
+.AdminSidebar {
+  width: 260px;
+  height: 100vh;
+  background-color: #1a1a2e; /* Dark professional theme */
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading Section */
+.Sidebar-Heading h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #4ecca3; /* Accent color */
+}
+
+/* Navigation Links Wrapper */
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* flex-grow: 1; Pushes the logout button to the bottom */
+}
+
+/* Base NavLink Style */
+nav a {
+  text-decoration: none;
+  color: #adb5bd;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  padding-left: 20px; /* Subtle slide effect */
+}
+
+/* Active Link (provided by NavLink) */
+nav a.active {
+  background-color: #4ecca3;
+  color: #1a1a2e;
+  font-weight: 600;
+}
+
+/* Logout Button */
+button {
+  background-color: transparent;
+  border: 1px solid #ff4d4d;
+  color: #ff4d4d;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  /* margin-top: auto; Aligns to bottom */
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff4d4d;
+  color: white;
+}

@@ -137,11 +137,11 @@ const fullOrder = {
     "Delivered"
   ],
 
-  products: products   // ⭐ Correct source
+  products: products  
 };
 
 
-// ⭐ Save to SAME key MyOrders reads
+
 const existingOrders =
   JSON.parse(localStorage.getItem("customer-orders")) || [];
 

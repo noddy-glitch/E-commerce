@@ -1,29 +1,12 @@
 import React, { createContext, useContext,useEffect,useState } from "react";
-import all_product from "../components/Assets/all_product";
+import all_product from "../Components/Assets/all_product";
 
 
 
 export const ShopContext = createContext(null);
 
-const [user, setUser]  =  useState(null);
-const [role,setRole]= useState("user")
 
-const login=(email,password,selectedRole) =>{
-  setUser({email});
-  setRole(selectedRole);
-};
 
-useEffect (()=>{
-  const savedUser = JSON.parse(localStorage.getItem("currentUser"));
-
-  if(savedUser){
-    setRole(savedUser.role);
-  }
-},[]);
-const logout = () =>{
-  setUser(null);
-  setRole("user");
-};
 const getDefaultCart = () => {
   let cart = {};
   for (let index = 0; index < all_product.length + 1; index++) {
@@ -36,6 +19,36 @@ export const useShopContext = () =>{
 }
 
 const ShopContextProvider = (props) => {
+  const [isuser , setisuser] = useState(localStorage.getItem("isLoggedIn"))
+  
+
+const [user, setUser] = useState(null);
+const [role, setRole] = useState("user");
+
+useEffect(() => {
+  const savedUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (savedUser) {
+    setUser(savedUser);
+    setRole(savedUser.role);
+  }
+}, []);
+
+const login = (email, password, selectedRole) => {
+  const userData = { email, role: selectedRole };
+
+  localStorage.setItem("currentUser", JSON.stringify(userData));
+
+  setUser(userData);
+  setRole(selectedRole);
+};
+
+const logout = () => {
+  localStorage.removeItem("currentUser");
+
+  setUser(null);
+  setRole("user");
+};
+
 
   const [search, setSearch] = useState("");
 
@@ -77,9 +90,26 @@ const ShopContextProvider = (props) => {
     setCartItems(getDefaultCart());
   }
 
-  const contextvalue = {
-    all_product, cartItems, removeFromCart, clearCart, addToCart, getTotalCartAmount, getTotalCartItems, search, setSearch
-  };
+ const contextvalue = {
+  all_product,
+  cartItems,
+  removeFromCart,
+  clearCart,
+  addToCart,
+  getTotalCartAmount,
+  getTotalCartItems,
+  search,
+  setSearch,
+  login,
+  logout,
+  user,
+  role ,
+  setisuser,
+  isuser
+
+};
+
+
   return (
     <ShopContext.Provider value={contextvalue}>
       {props.children}

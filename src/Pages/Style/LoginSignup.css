@@ -1,68 +1,100 @@
-.loginsignup{
-  width: 100%;
+/* Full Page Background */
+.loginsignup {
   min-height: 100vh;
-  background: #fce3fe;
   display: flex;
   justify-content: center;
   align-items: center;
+  /* background: linear-gradient(135deg, #667eea, #764ba2); */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.loginsignup-container{
-  width: 420px;
-  background: white;
-  padding: 35px 40px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+/* Card Container */
+.loginsignup-container {
+  background: #ffffff;
+  padding: 40px 35px;
+  width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
 }
 
-.loginsignup-container h1{
+/* Heading */
+.loginsignup-container h1 {
   margin-bottom: 25px;
   font-size: 28px;
+  color: #333;
+  font-weight: 600;
 }
 
-.loginsignup-fields{
+/* Input Fields Wrapper */
+.loginsignup-filds {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
-.loginsignup-fields input{
-  height: 50px;
-  width: 100%;
-  padding-left: 15px;
-  border: 1px solid #c9c9c9;
+/* Input Styling */
+.loginsignup-filds input[type="text"],
+.loginsignup-filds input[type="email"],
+.loginsignup-filds input[type="password"] {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: 0.3s ease;
   outline: none;
-  color: #5c5c5c;
-  font-size: 16px;
 }
 
-.loginsignup-container button{
-  width: 100%;
-  height: 50px;
-  color: white;
-  background: #ff4141;
-  margin-top: 25px;
-  font-size: 18px;
-  font-weight: 500;
-  border: none;
+.loginsignup-filds input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 5px rgba(102, 126, 234, 0.4);
+}
+
+/* Checkbox Area */
+.loginsignupagree {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #555;
+  margin-top: -8px;
+}
+
+.loginsignupagree input {
   cursor: pointer;
 }
 
-.loginsignup-login{
-  margin-top: 15px;
-  color: #5c5c5c;
-  font-size: 14px;
+/* Button */
+.loginsignup-container button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #667eea;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-.loginsignup-login span{
-  color: #ff4141;
+.loginsignup-container button:hover {
+  background: #5a67d8;
+  transform: translateY(-2px);
+}
+
+
+.loginsignup-container p {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #444;
+}
+
+.loginsignup-container span {
   font-weight: 600;
 }
-.loginsignup-agree{
-  display: flex;
-  align-items: center;
-  margin-top: 25px;
-  gap: 20px;
-  color: #5c5c5c;
-  font-size: 18px;
-  font-weight: 500;
+
+.loginsignup-container span:hover {
+  text-decoration: underline;
 }
