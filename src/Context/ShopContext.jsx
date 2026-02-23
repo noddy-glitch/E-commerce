@@ -7,13 +7,14 @@ export const ShopContext = createContext(null);
 
 
 
-const getDefaultCart = () => {
+const getDefaultCart = (products) => {
   let cart = {};
-  for (let index = 0; index < product.length + 1; index++) {
-    cart[index] = 0;
-  }
+  products.forEach((item) => {
+    cart[item.id] = 0;
+  });
   return cart;
-}
+};
+
 export const useShopContext = () =>{
   return useContext(ShopContext);
 }
@@ -34,7 +35,7 @@ if(savedProducts){
   setCartItems(getDefaultCart(savedProducts));
 }else{
   setProduct(all_product);
-  localStorage.setItem("prodct",JSON.stringify(all_product));
+  localStorage.setItem("products",JSON.stringify(all_product));
   setCartItems(getDefaultCart(all_product));
 }
 
@@ -45,7 +46,12 @@ const upDatedProducts = [...product, productData];
 setProduct(upDatedProducts);
 localStorage.setItem("products",JSON.stringify(upDatedProducts));
 
-}
+  setCartItems((prev) => ({
+    ...prev,
+    [productData.id]: 0
+  }));
+};
+
 
 useEffect(() => {
   const savedUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -74,7 +80,7 @@ const logout = () => {
 
   const [search, setSearch] = useState("");
 
-  const [cartItems, setCartItems] = useState(getDefaultCart());
+  const [cartItems, setCartItems] = useState({});
 
 
   const addToCart = (itemId) => {
@@ -111,7 +117,7 @@ const logout = () => {
 
   }
   const clearCart = () =>{
-    setCartItems(getDefaultCart());
+    setCartItems(getDefaultCart(product));
   }
 
  const contextvalue = {
