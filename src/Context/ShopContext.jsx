@@ -9,7 +9,7 @@ export const ShopContext = createContext(null);
 
 const getDefaultCart = () => {
   let cart = {};
-  for (let index = 0; index < all_product.length + 1; index++) {
+  for (let index = 0; index < product.length + 1; index++) {
     cart[index] = 0;
   }
   return cart;
@@ -24,6 +24,28 @@ const ShopContextProvider = (props) => {
 
 const [user, setUser] = useState(null);
 const [role, setRole] = useState("user");
+const [product,setProduct] = useState([])
+
+useEffect(() =>{
+const savedProducts = JSON.parse(localStorage.getItem("products"));
+
+if(savedProducts){
+  setProduct(savedProducts);
+  setCartItems(getDefaultCart(savedProducts));
+}else{
+  setProduct(all_product);
+  localStorage.setItem("prodct",JSON.stringify(all_product));
+  setCartItems(getDefaultCart(all_product));
+}
+
+},[]);
+
+const addproduct = (productData)=>{
+const upDatedProducts = [...product, productData];
+setProduct(upDatedProducts);
+localStorage.setItem("products",JSON.stringify(upDatedProducts));
+
+}
 
 useEffect(() => {
   const savedUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -64,8 +86,10 @@ const logout = () => {
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
-        let itemInfo = all_product.find((product) => product.id === Number(item));
+        const itemInfo = product.find((product) => product.id === Number(item));
+        if(itemInfo){
         totalAmount += cartItems[item] * itemInfo.new_price;
+        }
       }
     }
     return totalAmount;
@@ -91,6 +115,7 @@ const logout = () => {
   }
 
  const contextvalue = {
+
   all_product,
   cartItems,
   removeFromCart,
@@ -105,11 +130,14 @@ const logout = () => {
   user,
   role ,
   setisuser,
-  isuser
+  isuser,
+  product,
+  addproduct,
+  setProduct
 
 };
 
-
+ 
   return (
     <ShopContext.Provider value={contextvalue}>
       {props.children}

@@ -1,0 +1,94 @@
+.view-products {
+  padding: 30px;
+  min-height: 100vh;
+}
+
+.view-products h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Table */
+.product-table {
+  margin-left: 50px;
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.product-table th {
+  background: #111827;
+  color: #fff;
+  padding: 14px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.product-table td {
+  padding: 14px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+/* Hover effect */
+.product-table tbody tr:hover {
+  background-color: #f9fafb;
+  transition: 0.2s ease-in-out;
+}
+
+/* Image */
+.table-image {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Name column alignment */
+.product-table td:nth-child(3) {
+  text-align: left;
+  max-width: 250px;
+  font-weight: 500;
+}
+
+/* Buttons container */
+.product-table td:last-child {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Buttons */
+.edit-btn {
+  padding: 6px 14px;
+  background: #22c55e;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.edit-btn:hover {
+  background: #16a34a;
+}
+
+.delete-btn {
+  padding: 6px 14px;
+  background: #ef4444;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
