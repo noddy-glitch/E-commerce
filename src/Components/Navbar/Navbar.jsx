@@ -1,6 +1,6 @@
 import React, { useContext, useState,useEffect } from 'react'
 import './Navbar.css'
-import logo from "../Assets/logo.png"
+import logo from "../../Assets/logo.png"
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../../Context/ShopContext';
@@ -10,16 +10,16 @@ import { TfiLocationPin } from 'react-icons/tfi';
 
 const Navbar = () => {
   const { getTotalCartItems , isuser } = useContext(ShopContext);
-  const [isLogin,setIsLogin] = useState(false);
+//  const [isLogin,setIsLogin] = useState(false);
 console.log(isuser);
 
-  useEffect (()=>{
-    const LoginStatus = localStorage.getItem("isLoggedIn");
-    if(LoginStatus==="true"){
-      setIsLogin(true);
-    }
+  // useEffect (()=>{
+  //   const LoginStatus = localStorage.getItem("isLoggedIn");
+  //   if(LoginStatus==="true"){
+  //     setIsLogin(true);
+  //   }
 
-  },[])
+  // },[]) 
   return (
     <div className='navbar'>
       <div className="nav-logo">
@@ -31,7 +31,7 @@ console.log(isuser);
       </div>
       <div className="nav-login-cart">
 
-{isuser === "false" ?  <Link to="/login">
+{!isuser ?  <Link to="/login">
             <button className='login-btn'>Login</button>
           </Link>
            : <Link to="/profile">

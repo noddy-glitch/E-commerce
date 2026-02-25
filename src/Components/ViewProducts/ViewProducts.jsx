@@ -1,10 +1,16 @@
 import React from 'react'
-import all_product from '../Assets/all_product'
+// import all_product from '../Assets/all_product'
+import { useShopContext } from '../../Context/ShopContext'
+
 import './ViewProducts.css'
 
 
 const ViewProducts = () => {
-  const products = all_product
+  // const products = all_product
+  const{product,deleteproduct} = useShopContext();
+
+  console.log(product[0])
+
   return (
     <div className='view-products'>
       <h2>All Products</h2>
@@ -23,18 +29,18 @@ const ViewProducts = () => {
 </thead>
 <tbody>
 
-  {products.map((product) => (
+  {product.map((product) => (
     <tr key={product.id}>
       <td>{product.id}</td>
-      <img src={product.image}
+     <td> <img src={typeof product.image === 'string' ? product.image : (product?.image[0] || '')}
       alt={product.name}
-      className='table-image'/>
+      className='table-image'/></td>
       <td>{product.name}</td>
       <td>{product.category}</td>
     <td>{product.new_price}</td>
     <td>{product.old_price}</td>
     <td><button className="edit-btn">Edit</button>
-    <button className="delete-btn">Delete</button></td>
+    <button className="delete-btn" onClick={()=> deleteproduct(product.id)}>Delete</button></td>
     
     </tr>
   ))}

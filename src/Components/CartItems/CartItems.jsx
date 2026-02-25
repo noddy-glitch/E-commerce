@@ -2,9 +2,9 @@
 import React, { useState, useContext } from 'react'
 import './CartItems.css'
 import { ShopContext } from '../../Context/ShopContext'
-import remove_icon from '../Assets/cart_cross_icon.png'
+import remove_icon from '../../Assets/cart_cross_icon.png'
 import { useNavigate } from 'react-router-dom'
-import empty_icon from '../Assets/empty_icon.png'
+import empty_icon from '../../Assets/empty_icon.png'
 
 
 const CartItems = () => {

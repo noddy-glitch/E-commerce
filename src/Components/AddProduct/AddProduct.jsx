@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useShopContext } from '../../Context/ShopContext'
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
+import FormError from './ErrorMessage/ErrorMessage'
 import * as Yup from 'yup';
 
 const AddProduct = () => {
@@ -8,6 +9,10 @@ const AddProduct = () => {
   const fileInputRef = useRef(null);
   const { addProduct } = useShopContext();
   const [preview, setPreview] = useState([]);
+
+// useEffect(()=>{
+// console.log('preview=> ', JSON.stringify(preview))
+// },[preview])
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -19,6 +24,8 @@ const AddProduct = () => {
 
     image: Yup.array()
       .min(1, 'At least 1 image is required'),
+  //   image: Yup.string()
+  // .required('Image is required'),
 
     new_price: Yup.number()
       .required('New price is required'),
@@ -26,7 +33,7 @@ const AddProduct = () => {
     old_price: Yup.number()
       .required('Old price is required'),
   });
-
+    
   return (
     <div>
       <Formik
@@ -59,22 +66,27 @@ const AddProduct = () => {
 
             <div>
               <Field type="text" name="name" placeholder="Product Name" />
-              <ErrorMessage name="name" component="div" />
+              <FormError name="name"/>
+              {/* <Error
+                Message name="name" component="div" /> */}
             </div>
 
             <div>
               <Field type="text" name="category" placeholder="Category" />
-              <ErrorMessage name="category" component="div" />
+              <FormError name="category"/>
+              {/* <ErrorMessage name="category" component="div" /> */}
             </div>
 
             <div>
               <Field type="number" name="old_price" placeholder="Old Price" />
-              <ErrorMessage name="old_price" component="div" />
+              <FormError name="old_price"/>
+              {/* <ErrorMessage name="old_price" component="div" /> */}
             </div>
 
             <div>
               <Field type="number" name="new_price" placeholder="New Price" />
-              <ErrorMessage name="new_price" component="div" />
+              <FormError name="new_price"/>
+              {/* <ErrorMessage name="new_price" component="div" /> */}
             </div>
 
             <div>
@@ -82,17 +94,30 @@ const AddProduct = () => {
                 ref={fileInputRef}
                 type="file"
                 multiple
-                onChange={(event) => {
+               onChange={(event) => {
                   const files = Array.from(event.target.files);
-                  setFieldValue("image", files);
+                  if (files.length === 0) return;
+                  const base64Images = [];
 
-                  const previewUrls = files.map(file =>
-                    URL.createObjectURL(file)
-                  );
-                  setPreview(previewUrls);
+                  files.forEach((file) => {
+                    const reader = new FileReader();
+
+                    reader.onloadend = () => {
+                      base64Images.push(reader.result);
+
+                      // When all files are processed
+                      if (base64Images.length === files.length) {
+                        setFieldValue("image", base64Images);
+                        setPreview(base64Images);
+                      }
+                    };
+
+                    reader.readAsDataURL(file);
+                  });
                 }}
               />
-              <ErrorMessage name="image" component="div" />
+              <FormError name="image"/>
+              {/* <ErrorMessage name="image" component="div" /> */}
             </div>
 
             {preview.length > 0 && (
@@ -104,10 +129,9 @@ const AddProduct = () => {
                       type="button"
                       onClick={() => {
                         const updatedPreview = preview.filter((_, i) => i !== index);
-                        const updatedFiles = preview.filter((_, i) => i !== index);
 
                         setPreview(updatedPreview);
-                        setFieldValue("image", updatedFiles);
+                        setFieldValue("image", updatedPreview);
 
                         if (updatedPreview.length === 0) {
                           fileInputRef.current.value = "";

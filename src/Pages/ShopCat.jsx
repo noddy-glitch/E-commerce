@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import './Style/ShopCat.css'
-import { ShopContext } from '../Context/ShopContext'
-import arrow_icon from '../Components/Assets/arrow_icon.svg'
+import { ShopContext, useShopContext } from '../Context/ShopContext'
+import arrow_icon from '../Assets/arrow_icon.svg'
 import Item from '../Components/Items/Item'
 const ShopCat = (props) => {
-  const {all_product} = useContext(ShopContext)
+  // const {all_product} = useContext(ShopContext)
+  const {product} = useShopContext();
   return (
     <div className='shop-cat'>
       <img className= "shopcategory-banner" src={props.banner} alt="" />
@@ -17,7 +18,7 @@ const ShopCat = (props) => {
         </div>
       </div>
       <div className="shopcategory-products">
-        {all_product.map((item, i) => {
+        {product.map((item, i) => {
           if (props.category === item.category){
             return(
               <Item  key={i} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>

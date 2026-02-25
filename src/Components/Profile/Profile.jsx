@@ -8,10 +8,10 @@ const Profile = () => {
 
   const navigate = useNavigate();
   const handleLogout =() =>{
-    localStorage.setItem("isLoggedIn" , "false");
-    setisuser("false")
-    localStorage.removeItem("currentUser");
-    
+    localStorage.setItem("isLoggedIn" , false);
+    // localStorage.removeItem("isLoggedIn");
+    setisuser(false);
+    localStorage.removeItem("currentUser");    
     navigate("/login")
   }
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));

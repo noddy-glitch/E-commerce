@@ -62,9 +62,9 @@ const LoginSignup = () => {
       
 
       if (existingUser) {
-        localStorage.setItem("currentUser", JSON.stringify(existingUser));
-        localStorage.setItem("isLoggedIn", "true");
-        setisuser("true")
+        // localStorage.setItem("currentUser", JSON.stringify(existingUser));
+        // localStorage.setItem("isLoggedIn", "true");
+        // setisuser("true")
 
         login(existingUser.email, existingUser.password, existingUser.role);
 

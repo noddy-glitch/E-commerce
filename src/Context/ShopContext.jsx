@@ -1,5 +1,5 @@
 import React, { createContext, useContext,useEffect,useState } from "react";
-import all_product from "../Components/Assets/all_product";
+import all_product from "../Assets/all_product";
 
 
 
@@ -20,8 +20,11 @@ export const useShopContext = () =>{
 }
 
 const ShopContextProvider = (props) => {
-  const [isuser , setisuser] = useState(localStorage.getItem("isLoggedIn"))
-  
+  // const [isuser , setisuser] = useState(localStorage.getItem("isLoggedIn"))
+  const [isuser, setisuser] = useState(() => {
+    return localStorage.getItem("isLoggedIn") === 'true';
+  });
+    
 
 const [user, setUser] = useState(null);
 const [role, setRole] = useState("user");
@@ -41,17 +44,6 @@ if(savedProducts){
 
 },[]);
 
-const addproduct = (productData)=>{
-const upDatedProducts = [...product, productData];
-setProduct(upDatedProducts);
-localStorage.setItem("products",JSON.stringify(upDatedProducts));
-
-  setCartItems((prev) => ({
-    ...prev,
-    [productData.id]: 0
-  }));
-};
-
 
 useEffect(() => {
   const savedUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -61,64 +53,91 @@ useEffect(() => {
   }
 }, []);
 
-const login = (email, password, selectedRole) => {
+const login = (email,password, selectedRole) => {
   const userData = { email, role: selectedRole };
 
   localStorage.setItem("currentUser", JSON.stringify(userData));
-
+  localStorage.setItem("isLoggedIn", true);
+setisuser(true);
   setUser(userData);
   setRole(selectedRole);
 };
 
 const logout = () => {
   localStorage.removeItem("currentUser");
-
+  localStorage.removeItem("isLoggedIn");
+  setisuser(false);
   setUser(null);
-  setRole("user");
+  setRole(null);
 };
 
 
-  const [search, setSearch] = useState("");
-
-  const [cartItems, setCartItems] = useState({});
 
 
-  const addToCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
+const [search, setSearch] = useState("");
 
-  }
+const [cartItems, setCartItems] = useState({});
 
-  const getTotalCartAmount = () => {
-    let totalAmount = 0;
-    for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        const itemInfo = product.find((product) => product.id === Number(item));
-        if(itemInfo){
+
+const addToCart = (itemId) => {
+  setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
+  
+}
+
+const getTotalCartAmount = () => {
+  let totalAmount = 0;
+  for (const item in cartItems) {
+    if (cartItems[item] > 0) {
+      const itemInfo = product.find((product) => product.id === Number(item));
+      if(itemInfo){
         totalAmount += cartItems[item] * itemInfo.new_price;
-        }
       }
     }
-    return totalAmount;
   }
+  return totalAmount;
+}
 
-  const getTotalCartItems = () => {
-    let totalItems = 0;
-    for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        totalItems += cartItems[item];
-      }
+const getTotalCartItems = () => {
+  let totalItems = 0;
+  for (const item in cartItems) {
+    if (cartItems[item] > 0) {
+      totalItems += cartItems[item];
     }
-    return totalItems;
   }
+  return totalItems;
+}
 
 
-  const removeFromCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
+const removeFromCart = (itemId) => {
+  setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
+  
+}
+const clearCart = () =>{
+  setCartItems(getDefaultCart(product));
+}
 
-  }
-  const clearCart = () =>{
-    setCartItems(getDefaultCart(product));
-  }
+const deleteproduct = ((id) => {
+
+  const updatedProducts = product.filter(
+    (product) => product.id !==id
+  );
+  setProduct(updatedProducts);
+  localStorage.setItem("products",JSON.stringify(updatedProducts));
+  setCartItems(getDefaultCart(updatedProducts))
+})
+
+const addProduct = (productData) => {
+  const newProduct = {
+    ...productData,
+    id: product.length + 1, //new id
+  };
+
+  const updatedProducts = [...product, newProduct];
+  setProduct(updatedProducts);
+  localStorage.setItem("products", JSON.stringify(updatedProducts));
+
+  setCartItems(getDefaultCart(updatedProducts));
+};
 
  const contextvalue = {
 
@@ -138,10 +157,9 @@ const logout = () => {
   setisuser,
   isuser,
   product,
-  addproduct,
-  setProduct
-
-};
+  addProduct,
+  setProduct,
+deleteproduct};
 
  
   return (

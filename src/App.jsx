@@ -8,9 +8,9 @@ import Cart from './Pages/Cart'
 import Product from './Pages/Product'
 import Sidebar from './Components/Sidebar/Sidebar'
 import Footer from './Components/Footer/Footer'
-import men_banner from './Components/Assets/banner_mens.png'
-import women_banner from './Components/Assets/banner_women.png'
-import kid_banner from './Components/Assets/banner_kids.png'
+import men_banner from './Assets/banner_mens.png'
+import women_banner from './Assets/banner_women.png'
+import kid_banner from './Assets/banner_kids.png'
 import CheckOut from "./Components/CartItems/CheckOut"
 import Payment from './components/Cartitems/Payment'
 import Order from './Components/CartItems/Order'
@@ -21,7 +21,7 @@ import AdminLayout from './Components/AdminLayout/AdminLayout'
 import AdminDashboard from './Components/AdminDashboard/AdminDashboard'
 import AddProduct from './Components/AddProduct/AddProduct'
 import ViewProducts from './Components/ViewProducts/ViewProducts'
-
+import Orders from './Components/Orders/Orders'
 
 function App() {
   const { role } = useShopContext();
@@ -74,7 +74,8 @@ function App() {
               <Route index element={<AdminDashboard />} />
               <Route path="add-product" element={<AddProduct/>} />
                <Route path="View-Products" element={<ViewProducts/>} />
-            </Route>
+               <Route path='View-Orders' element={<Orders/>}></Route>
+                </Route>
 
            
             <Route path="*" element={<Navigate to="/" />} />

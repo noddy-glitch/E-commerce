@@ -13,6 +13,8 @@ const AdminSidebar = () => {
       <NavLink to="/admin" className="admin-dashboard">Dashboard</NavLink>
       <NavLink to="/admin/add-product"className="admin-addproduct">Add Products</NavLink>
       <NavLink to="/admin/View-Products" className="admin-view-products">View Products</NavLink>
+      <NavLink to="/admin/View-Orders" className="admin-view-Orders">Orders</NavLink>
+
       </nav>
            <button onClick={logout}>Logout</button>
 
