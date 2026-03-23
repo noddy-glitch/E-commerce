@@ -69,7 +69,7 @@ const LoginSignup = () => {
         login(existingUser.email, existingUser.password, existingUser.role);
 
         if (existingUser.role === "admin") {
-          navigate("/admin");
+          navigate("/");
         } else {
           navigate("/");
         }

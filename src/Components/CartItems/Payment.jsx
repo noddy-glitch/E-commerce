@@ -7,7 +7,7 @@ import { useState } from "react";
 const Payment = () => {
  const location = useLocation();
  const navigate = useNavigate();
- const { address, totalAmount, orderId, products } =
+ const { address, totalAmount, orderId, products,  userEmail} =
   location.state || {};
 
 //  const { address, totalAmount, orderId } = location.state || {};
@@ -109,21 +109,10 @@ const Payment = () => {
 
  updateTotalIncome(discountedAmount);
 
-// ⭐ Get products from cart
-// const cartProducts =
-//   JSON.parse(localStorage.getItem("cartItems")) || [];
 
-// // ⭐ Build FULL order object
-// const fullOrder = {
-//   id: orderId,
-//   address,
-//   totalAmount: discountedAmount,
-//   orderDate: new Date().toISOString(),
-//   status: "Order Placed",
-//   products: cartProducts
-// };
 const fullOrder = {
   id: orderId,
+  userEmail: userEmail,
   address,
   totalAmount: discountedAmount,
   orderDate: new Date().toISOString(),
@@ -137,9 +126,8 @@ const fullOrder = {
     "Delivered"
   ],
 
-  products: products  
+  products: products
 };
-
 
 
 const existingOrders =

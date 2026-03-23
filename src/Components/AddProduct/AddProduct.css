@@ -1,0 +1,116 @@
+/* Main container */
+.add-product-container {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Heading */
+.add-product-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+  color: #1a1a2e;
+}
+
+/* Form layout */
+.add-product-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Input wrapper */
+.add-product-container form div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inputs */
+.add-product-container input[type="text"],
+.add-product-container input[type="number"] {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  transition: border 0.2s ease;
+}
+
+.add-product-container input:focus {
+  border-color: #4ecca3;
+  outline: none;
+}
+
+/* File input */
+.add-product-container input[type="file"] {
+  border: none;
+  font-size: 14px;
+}
+
+/* Submit button */
+.add-product-container button[type="submit"] {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #4ecca3;
+  color: #1a1a2e;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.add-product-container button[type="submit"]:hover {
+  background: #38b593;
+}
+
+/* Preview container */
+.preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Each preview box */
+.preview-item {
+  position: relative;
+}
+
+/* Preview image */
+.preview-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+/* Remove button */
+.preview-item button {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ff4d4d;
+  border: none;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.preview-item button:hover {
+  background: #d93636;
+}
+
+/* Error message */
+.error-message {
+  font-size: 12px;
+  color: #ff4d4d;
+  margin-top: 4px;
+}

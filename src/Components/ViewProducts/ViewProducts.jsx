@@ -1,53 +1,73 @@
 import React from 'react'
-// import all_product from '../Assets/all_product'
 import { useShopContext } from '../../Context/ShopContext'
-
+import { useNavigate } from 'react-router-dom';
 import './ViewProducts.css'
 
-
 const ViewProducts = () => {
-  // const products = all_product
-  const{product,deleteproduct} = useShopContext();
 
-  console.log(product[0])
+  const navigate = useNavigate(); // ✅ moved inside
+
+  const { product, deleteproduct } = useShopContext();
 
   return (
     <div className='view-products'>
       <h2>All Products</h2>
       <table className='product-table'>
-<thead>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>IMAGE</th>
+            <th>NAME</th>
+            <th>CATEGORY</th>
+            <th>NEW PRICE</th>
+            <th>OLD PRICE</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
 
-  <tr>
-    <th>ID</th>
-    <th>IMAGE</th>
-    <th>NAME</th>
-    <th>CATEGORY</th>
-    <th>NEW PRICE</th>
-    <th>OLD PRICE</th>
-    <th>ACTIONS</th>
-  </tr>
-</thead>
-<tbody>
+        <tbody>
+          {product.map((item) => (   // ✅ renamed for clarity
+            <tr key={item.id}>
+              <td>{item.id}</td>
 
-  {product.map((product) => (
-    <tr key={product.id}>
-      <td>{product.id}</td>
-     <td> <img src={typeof product.image === 'string' ? product.image : (product?.image[0] || '')}
-      alt={product.name}
-      className='table-image'/></td>
-      <td>{product.name}</td>
-      <td>{product.category}</td>
-    <td>{product.new_price}</td>
-    <td>{product.old_price}</td>
-    <td><button className="edit-btn">Edit</button>
-    <button className="delete-btn" onClick={()=> deleteproduct(product.id)}>Delete</button></td>
-    
-    </tr>
-  ))}
-</tbody>
+              <td>
+                <img
+                  src={
+                    typeof item.image === 'string'
+                      ? item.image
+                      : (item?.image[0] || '')
+                  }
+                  alt={item.name}
+                  className='table-image'
+                />
+              </td>
+
+              <td>{item.name}</td>
+              <td>{item.category}</td>
+              <td>{item.new_price}</td>
+              <td>{item.old_price}</td>
+
+              <td>
+                <button
+                  className="edit-btn"
+                  onClick={() => navigate(`/admin/add-product/${item.id}`)}
+                >
+                  Edit
+                </button>
+
+                <button
+                  className="delete-btn"
+                  onClick={() => deleteproduct(item.id)}
+                >
+                  Delete
+                </button>
+              </td>
+
+            </tr>
+          ))}
+        </tbody>
 
       </table>
-      
     </div>
   )
 }

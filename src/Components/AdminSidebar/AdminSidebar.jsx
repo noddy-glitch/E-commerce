@@ -10,10 +10,34 @@ const AdminSidebar = () => {
         <h1>Admin Panel</h1>
       </div>
       <nav>
-      <NavLink to="/admin" className="admin-dashboard">Dashboard</NavLink>
-      <NavLink to="/admin/add-product"className="admin-addproduct">Add Products</NavLink>
-      <NavLink to="/admin/View-Products" className="admin-view-products">View Products</NavLink>
-      <NavLink to="/admin/View-Orders" className="admin-view-Orders">Orders</NavLink>
+      <NavLink 
+  to="/admin" 
+   end
+  className={({ isActive }) => isActive ? "active" : ""}
+>
+  Dashboard
+</NavLink>
+
+<NavLink 
+  to="/admin/add-product" 
+  className={({ isActive }) => isActive ? "active" : ""}
+>
+  Add Products
+</NavLink>
+
+<NavLink 
+  to="/admin/View-Products" 
+  className={({ isActive }) => isActive ? "active" : ""}
+>
+  View Products
+</NavLink>
+
+<NavLink 
+  to="/admin/View-Orders" 
+  className={({ isActive }) => isActive ? "active" : ""}
+>
+  Orders
+</NavLink>
 
       </nav>
            <button onClick={logout}>Logout</button>

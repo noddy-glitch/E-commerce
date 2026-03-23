@@ -3,15 +3,17 @@ import './Navbar.css'
 import logo from "../../Assets/logo.png"
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import { ShopContext } from '../../Context/ShopContext';
+import { ShopContext, useShopContext } from '../../Context/ShopContext';
 import {RiUserHeartLine} from "react-icons/ri"
 import { TfiLocationPin } from 'react-icons/tfi';
 
 
 const Navbar = () => {
-  const { getTotalCartItems , isuser } = useContext(ShopContext);
+  const { role, getTotalCartItems, isuser } = useShopContext();
+  // const {role} = useShopContext();
+  // const { getTotalCartItems , isuser } = useContext(ShopContext);
 //  const [isLogin,setIsLogin] = useState(false);
-console.log(isuser);
+// console.log(isuser);
 
   // useEffect (()=>{
   //   const LoginStatus = localStorage.getItem("isLoggedIn");
@@ -28,6 +30,13 @@ console.log(isuser);
 
       <div className='search'> <input type="text" placeholder='Search' />
         <button>🔍︎</button>
+      </div>
+      <div className="admin">
+        {role ==="admin" && (
+          <Link to="/admin">
+            <button>admin</button>
+          </Link>
+        )}
       </div>
       <div className="nav-login-cart">
 

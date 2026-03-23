@@ -126,13 +126,30 @@ const deleteproduct = ((id) => {
   setCartItems(getDefaultCart(updatedProducts))
 })
 
+const editProduct = (id, updatedData) => {
+  const updatedProducts = product.map((item) =>
+    item.id === id ? { ...item, ...updatedData } : item
+  );
+
+  setProduct(updatedProducts);
+  localStorage.setItem("products", JSON.stringify(updatedProducts));
+
+  setCartItems(getDefaultCart(updatedProducts));
+};
+
 const addProduct = (productData) => {
+  const newId =
+    product.length > 0
+      ? Math.max(...product.map((item) => item.id)) + 1
+      : 1;
+
   const newProduct = {
     ...productData,
-    id: product.length + 1, //new id
+    id: newId,
   };
 
   const updatedProducts = [...product, newProduct];
+
   setProduct(updatedProducts);
   localStorage.setItem("products", JSON.stringify(updatedProducts));
 
@@ -159,7 +176,8 @@ const addProduct = (productData) => {
   product,
   addProduct,
   setProduct,
-deleteproduct};
+deleteproduct,
+editProduct};
 
  
   return (
