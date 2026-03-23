@@ -1,5 +1,5 @@
 import React from "react";
-import "./style/LoginSignup.css";
+import "./Style/LoginSignup.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useShopContext } from "../Context/ShopContext";
