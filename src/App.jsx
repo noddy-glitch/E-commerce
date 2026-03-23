@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
-import LoginSignup from "./pages/LoginSignup";
+import LoginSignup from "./Pages/LoginSignup";
 import ShopCat from "./Pages/ShopCat";
 import Shop from "./Pages/Shop";
 import Cart from "./Pages/Cart";
